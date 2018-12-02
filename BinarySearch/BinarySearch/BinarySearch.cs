@@ -8,7 +8,7 @@ namespace BinarySearch
     {
         private int[] seq;
         private int n;
-        private int value;      
+        private int value;
         public BinarySearch(int[] s, int N, int v)
         {
             seq = s;
@@ -24,11 +24,11 @@ namespace BinarySearch
             while (min <= max)
             {
                 int med = (min + max) / 2;
-                if(seq[med] == value)
+                if (seq[med] == value)
                 {
                     return med;
                 }
-                if(seq[med] < value)
+                if (seq[med] < value)
                 {
                     min = med + 1;
                 }
@@ -50,11 +50,11 @@ namespace BinarySearch
             {
                 int med = (min + max) / 2;
 
-                if(seq[med] < value)
+                if (seq[med] < value)
                 {
                     min = med + 1;
                 }
-                else if(seq[med] > value)
+                else if (seq[med] > value)
                 {
                     max = med - 1;
                 }
@@ -64,6 +64,33 @@ namespace BinarySearch
                 }
             }
             return -1;
+        }
+        //Third version
+        public int Search3()
+        {
+            int min = 0;
+            int max = n - 1;
+            while (min < max)
+            {
+                int med = (min + max) / 2;
+                if (seq[med] < value)
+                {
+                    min = med + 1;
+                }
+                else
+                {
+                    max = med;
+                }
+            }
+            if(seq[min] == value)
+            {
+                return seq[min];
+            }
+            else
+            {
+                return -1;
+            }
+
         }
     }
 }

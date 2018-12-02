@@ -11,7 +11,7 @@ namespace BinarySearch
             int value = 9;
 
             BinarySearch B = new BinarySearch(seq, n, value);
-            Console.WriteLine(B.Search2());
+            Console.WriteLine(B.Search3());
             Console.ReadKey();
         }
     }
