@@ -30,7 +30,7 @@ namespace SequentialSearch
             return -1;
         }
 
-        //Optimized sequencial search
+        //Optimized sequencial search for ordered sequence
         public int OptimizedSeqSearch()
         {
             for(i = 0; i < n; i++)
