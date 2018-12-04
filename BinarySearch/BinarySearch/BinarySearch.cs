@@ -9,10 +9,19 @@ namespace BinarySearch
         private int[] seq;
         private int n;
         private int value;
+        private int begin;
+        private int end;
         public BinarySearch(int[] s, int N, int v)
         {
             seq = s;
             n = N;
+            value = v;
+        }
+        public BinarySearch(int[] s, int b, int e, int v)
+        {
+            begin = b;
+            end = e;
+            seq = s;
             value = v;
         }
 
@@ -26,7 +35,7 @@ namespace BinarySearch
                 int med = (min + max) / 2;
                 if (seq[med] == value)
                 {
-                    return med;
+                    return seq[med];
                 }
                 if (seq[med] < value)
                 {
@@ -89,6 +98,33 @@ namespace BinarySearch
             else
             {
                 return -1;
+            }
+
+        }
+
+        //Recursive version of binary search
+        public int SearchRecursive()
+        {
+            if(begin > end)
+            {
+                return -1;
+            }
+
+            int med = (begin + end) / 2;
+
+            if(seq[med] == value)
+            {
+                return seq[med];
+            }
+            if(seq[med] > value)
+            {
+                var b = new BinarySearch(seq, begin, med-1, value);
+                return b.SearchRecursive();
+            }
+            else
+            {
+                var b = new BinarySearch(seq, med+1, end, value);
+                return b.SearchRecursive();
             }
 
         }
