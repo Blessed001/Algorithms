@@ -11,9 +11,17 @@ namespace TernarySearch
         private int Value;
         private int fpivot;
         private int spivot;
+        private int begin;
         public TernarySearch(int[] s, int n, int v)
         {
             seq = s;
+            N = n;
+            Value = v;
+        }
+        public TernarySearch(int[] s, int b, int n, int v)
+        {
+            seq = s;
+            begin = b;
             N = n;
             Value = v;
         }
@@ -78,7 +86,7 @@ namespace TernarySearch
                 }
                 else if (seq[spivot] > Value)
                 {
-                    min = fpivot + 1; max = spivot - 1;
+                    min = fpivot; max = spivot - 1;
                 }
                 else
                 {
@@ -94,6 +102,49 @@ namespace TernarySearch
                 return -1;
             }
         }
-        
+        //Version recursive
+        public int SearchRec()
+        {
+            if(begin > N)
+            {
+                return -1;
+            }
+            int nelem = N - begin + 1;
+            if(nelem % 3 == 0)
+            {
+                fpivot = begin + (nelem / 3) - 1;
+                spivot = begin + (2 * nelem / 3) - 1;
+            }
+            else
+            {
+                fpivot = begin + (nelem / 3);
+                spivot = begin + (2 * nelem / 3);
+            }
+
+            if(seq[fpivot] == Value)
+            {
+                return seq[fpivot];
+            }
+            else if (seq[fpivot] > Value)
+            {
+                N = fpivot - 1;
+            }
+            else if(seq[spivot] == Value)
+            {
+                return seq[spivot];
+            }
+            else if(seq[spivot] > Value)
+            {
+                begin = fpivot + 1; N = spivot - 1;
+            }
+            else
+            {
+                begin = spivot + 1;
+            }
+
+            TernarySearch T = new TernarySearch(seq, begin, N, Value);
+            return T.SearchRec();
+
+        }        
     }
 }
