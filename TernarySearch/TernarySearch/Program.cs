@@ -11,6 +11,7 @@ namespace TernarySearch
             int v = 7;
             TernarySearch T = new TernarySearch(seq, n, v);
             Console.WriteLine(T.Search1());
+            Console.WriteLine(T.Search2());
             Console.ReadKey();
         }
     }
